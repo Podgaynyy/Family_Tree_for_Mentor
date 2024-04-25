@@ -1,26 +1,41 @@
 package org.example;
 
-import java.time.LocalDate;
-import java.util.LinkedList;
+public class FamilyTree extends Relation {
+    private Human root;
 
-//Создаём класс фамильное дерево
-public class FamilyTree {
-    private LinkedList<Human> humanList;
+    // Конструктор, который принимает корневого человека семейного дерева
+    public FamilyTree(Human root) {
+        this.root = root;
+    }
 
-    public FamilyTree() {
-        humanList = new LinkedList<>();
+    // Метод для добавления человека в дерево, теперь уже не нужен, так как Relation управляет связями
+    public void addHuman(Human child, Human father, Human mother) {
+        if (root == null) {
+            root = child;
+        }
+        child.setFather(father);
+        child.setMother(mother);
     }
-    public void addHuman(Human human) {
-        humanList.add(human);
-    }
-    //
+
+    @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("---\n");
-        for (Human human: humanList){
-            stringBuilder.append(human.getInfo());
-            stringBuilder.append("\n---\n");
-        }
+        printTree(root, stringBuilder, "");
         return stringBuilder.toString();
     }
+
+    // Рекурсивный метод для печати дерева с отступами для лучшего восприятия структуры
+    private void printTree(Human current, StringBuilder stringBuilder, String prefix) {
+        if (current == null) return;
+        stringBuilder.append(prefix).append(current.toString()).append("\n");
+        if (current.getFather() != null) {
+            stringBuilder.append(prefix).append("Father:\n");
+            printTree(current.getFather(), stringBuilder, prefix + "    "); // Увеличиваем отступ для дочерних элементов
+        }
+        if (current.getMother() != null) {
+            stringBuilder.append(prefix).append("Mother:\n");
+            printTree(current.getMother(), stringBuilder, prefix + "    ");
+        }
+    }
 }
+
