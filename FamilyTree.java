@@ -1,6 +1,6 @@
 package org.example;
 
-public class FamilyTree extends Relation {
+public class FamilyTree <E extends FamilyTreeElement> extends Relation<E>{
     private Human root;
 
     // Конструктор, который принимает корневого человека семейного дерева

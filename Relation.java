@@ -1,26 +1,32 @@
 package org.example;
 
-public class Relation {
-    private Human root;
+public class Relation <E extends FamilyTreeElement> {
+    private E root;
 
-    public void addHuman(Human child, Human father, Human mother) {
+    public void addHuman(E child, E father, E mother) {
         if (root == null) {
             root = child;  // Устанавливаем ребенка как корень, если это первый вызов
         }
-        child.setFather(father);
-        child.setMother(mother);
+        if (child instanceof Human) {
+            ((Human) child).setFather((Human) father);
+            ((Human) child).setMother((Human) mother);
+        }
     }
 
-    private void printTree(Human current) {
-        if (current == null) return;
-        System.out.println(current);  // Вывод информации о текущем человеке
-        if (current.getFather() != null) {
-            System.out.println("Father:");
-            printTree(current.getFather());  // Рекурсивный вызов для отца
+    private void printTree(E current) {
+        if (current instanceof Human || current != null){
+            System.out.println(current);
         }
-        if (current.getMother() != null) {
-            System.out.println("Mother:");
-            printTree(current.getMother());  // Рекурсивный вызов для матери
+        if (current instanceof Human) {
+            Human human = (Human) current;
+            if (human.getFather() != null) {
+                System.out.println("Father:");
+                printTree((E) human.getFather());
+            }
+            if (human.getMother() != null) {
+                System.out.println("Mather:");
+                printTree((E) human.getMother());
+            }
         }
     }
 

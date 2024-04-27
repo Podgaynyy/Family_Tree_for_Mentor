@@ -3,7 +3,7 @@ package org.example;
 import java.time.LocalDate;
 
 
-public class Human {
+public class Human implements FamilyTreeElement{
     private String name;
     private LocalDate dob;
     private LocalDate dod;
@@ -30,6 +30,22 @@ public class Human {
     public String getName(){
         return name;
     }
+
+    @Override
+    public LocalDate getDateOfBirth() {
+        return dob;
+    }
+
+    @Override
+    public LocalDate getDeathDate() {
+        return dod;
+    }
+
+    @Override
+    public Gender getGender() {
+        return gender;
+    }
+
     public void setFather(Human father) {
         this.father = father;
     }
