@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Model;
 
 public enum Gender {
     Male,

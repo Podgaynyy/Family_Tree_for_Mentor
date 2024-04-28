@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Model;
 
 import java.time.LocalDate;
 
@@ -73,13 +73,13 @@ public class Human implements FamilyTreeElement{
 
     private String getInfoTrue(){
         StringBuilder sb = new StringBuilder();
-        sb.append("Name = " + name + "Gender = " + gender + "Birthday = " + dob + "Dead = " + dod);
+        sb.append("Name = " + name + ": Gender = " + gender + ": Birthday = " + dob + ": Dead = " + dod);
         return sb.toString();
     }
 
     private String getInfoFalse(){
         StringBuilder sb = new StringBuilder();
-        sb.append("Name = " + name + "Gender = " + gender + "DOB = " + dob);
+        sb.append("Name = " + name + ": Gender = " + gender + ": DOB = " + dob);
         return sb.toString();
     }
 }
